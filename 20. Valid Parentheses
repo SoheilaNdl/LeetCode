@@ -1,0 +1,37 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        flag = True
+        for i in s:
+            if( i == "(" or i == "{" or i == '['):
+                stack.append(str(i))
+                
+            elif(i == ')'):
+                if stack:
+                    if(stack.pop() != '('):
+                        flag = False
+                else:
+                    flag = False
+                        
+            elif(i == '}'):
+                if stack:
+                    if(stack.pop() != '{'):
+                        flag = False
+                else:
+                    flag = False
+                    
+            elif(i == ']'):
+                if stack:
+                    if(stack.pop() != '['):
+                        flag = False
+                else:
+                    flag = False
+        if stack:
+            flag = False
+        return(flag)
+                    
+        
