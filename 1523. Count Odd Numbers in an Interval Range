@@ -1,0 +1,14 @@
+class Solution(object):
+    def countOdds(self, low, high):
+        """
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        my_range = high - low
+        if((high % 2 == 0) and (low % 2 == 0)):
+            return ((my_range/2))
+        return ((my_range/2)+1)
+
+                
+        
