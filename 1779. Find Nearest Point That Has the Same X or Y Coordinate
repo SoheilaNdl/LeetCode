@@ -1,0 +1,29 @@
+class Solution(object):
+    def nearestValidPoint(self, x, y, points):
+        """
+        :type x: int
+        :type y: int
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        distance = float("inf")
+        for idx, point in enumerate(points):
+            if x == point[0]:
+                new_distance = abs(y - point[1])
+                if distance > new_distance:
+                    distance = new_distance
+                    index = idx
+                if distance == new_distance:
+                    if(index > idx):
+                        index = idx
+            if y == point[1]:
+                new_distance = abs(x - point[0])
+                if distance > new_distance:
+                    distance = new_distance
+                    index = idx          
+                if distance == new_distance:
+                    if(index > idx):
+                        index = idx  
+        if distance < float("inf"):
+            return index
+        return -1
