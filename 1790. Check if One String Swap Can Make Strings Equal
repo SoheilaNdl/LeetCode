@@ -1,0 +1,24 @@
+class Solution(object):
+    def areAlmostEqual(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        diff = 0
+        idx = []
+        if len(s1) != len(s2):
+            return False
+        if s1 == s2:
+            return True
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                diff = diff + 1
+                idx.append(i)
+        if diff != 2:
+            return False
+        if(s1[idx[0]] == s2[idx[1]] and s1[idx[1]] == s2[idx[0]]):
+            return True
+
+        return False
+        
