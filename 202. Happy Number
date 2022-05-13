@@ -1,0 +1,24 @@
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        seen = set()
+
+        while (n != 1 and n not in seen):
+            my_sum = 0
+            seen.add(n)
+
+            while(n > 0):
+                i = n % 10
+                my_sum = my_sum + i*i
+                n = n / 10
+            if my_sum == 1:
+                return True
+            n = my_sum
+        if( n == 1):
+            return True
+        return False
+        
+        
