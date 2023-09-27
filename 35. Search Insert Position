@@ -1,0 +1,18 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        high = len(nums)
+        low = 0
+        mid = low + ((high - low) //2)
+        #check if the target is bigger that last element
+        if(target > nums[high-1]):
+            return high
+        #find the index of target
+        while(low <= high):
+            mid = low + ((high - low) //2)
+            if (target == nums[mid]):
+                return mid
+            if (target < nums[mid]):
+                high = mid - 1
+            else:
+                low = mid + 1
+        return low     
