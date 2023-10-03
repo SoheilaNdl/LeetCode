@@ -1,3 +1,4 @@
+############ Recursive Solution ############
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -11,4 +12,30 @@ class Solution:
             my_list.extend(self.inorderTraversal(root.left))
             my_list.append(root.val)
             my_list.extend(self.inorderTraversal(root.right))
+        return my_list
+
+
+############ Iterative Solution ############
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        current = root
+        stack = []
+        my_list = []
+        while(1):
+            if(current != None):
+                stack.append(current)
+                current = current.left
+            elif(stack):
+                popped_item = stack.pop()
+                my_list.append(popped_item.val)
+                current = popped_item.right
+            else:
+                break
         return my_list
