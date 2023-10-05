@@ -1,0 +1,42 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        #Iterative Solution
+        if(not root):
+            return True
+        stack1 = []
+        stack2 = []
+
+        stack1.append(root.left)
+        stack2.append(root.right)
+        while(len(stack1)>0 and len(stack2)>0):
+            item1 = stack1.pop()
+            item2 = stack2.pop()
+            if((item1 and not item2) or (not item1 and item2)):
+                return False
+            if(item1):
+                if(item1.val != item2.val):
+                    return False
+                else:
+                    stack1.extend([item1.left, item1.right])
+                    stack2.extend([item2.right, item2.left])
+        return True
+
+        #Recursive Solution
+        def two_sym(r_left, r_right):
+            if(r_left == None and r_right == None):
+                return True
+            if(r_left == None or r_right == None):
+                return False
+            elif(r_left.val != r_right.val):
+                return False
+            else:
+                return two_sym(r_left.left, r_right.right) and two_sym(r_left.right, r_right.left)
+
+        return two_sym(root.left, root.right)
+        
