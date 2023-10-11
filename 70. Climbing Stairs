@@ -1,8 +1,19 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
+        #Tabulation
         F = (n+1) * [0]
         F[0] = 1
         F[1] = 1
         for i in range(2, n+1):
             F[i] = F[i-1] + F[i-2]
         return F[n]
+
+        #Space Optimization
+        new = 1
+        prev = 1
+        curr = 1
+        for i in range(2, n+1):
+            new = curr + prev
+            prev = curr
+            curr = new
+        return new
