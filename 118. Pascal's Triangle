@@ -1,0 +1,22 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        p_triangle = [[1]]
+        if(numRows == 0):
+            return []
+        if(numRows == 1):
+            print(p_triangle)
+            return p_triangle
+        p_triangle.append([1, 1])
+        if(numRows == 2):
+            print(p_triangle)
+            return p_triangle
+
+        for i in range(2, numRows):
+            p_triangle.append([1])
+            
+            for j in range(1, i):
+                added_num = p_triangle[i-1][j-1] + p_triangle[i-1][j]
+                p_triangle[i].append(added_num)
+            p_triangle[i].append(1)
+        
+        return p_triangle
