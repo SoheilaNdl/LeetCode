@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+
+    # Using Stack  
+        current = head
+        reversed_stack = []
+        while(current):
+            reversed_stack.append(current)
+            current = current.next
+        ll = len(reversed_stack)//2
+        for i in range(ll):
+            if(head.val != reversed_stack.pop().val):
+                return False
+            head = head.next   
+        return True
+    # Using String
+        current = head
+        my_num = ''
+        while(current):
+            my_num = my_num + str(current.val)
+            current = current.next
+        my_num_reversed = my_num[::-1]
+        if my_num == my_num_reversed:
+            return True
+        return False
