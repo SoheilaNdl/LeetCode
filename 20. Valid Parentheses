@@ -1,37 +1,15 @@
-class Solution(object):
-    def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        stack = []
-        flag = True
-        for i in s:
-            if( i == "(" or i == "{" or i == '['):
-                stack.append(str(i))
-                
-            elif(i == ')'):
-                if stack:
-                    if(stack.pop() != '('):
-                        flag = False
-                else:
-                    flag = False
-                        
-            elif(i == '}'):
-                if stack:
-                    if(stack.pop() != '{'):
-                        flag = False
-                else:
-                    flag = False
-                    
-            elif(i == ']'):
-                if stack:
-                    if(stack.pop() != '['):
-                        flag = False
-                else:
-                    flag = False
-        if stack:
-            flag = False
-        return(flag)
-                    
-        
+class Solution:
+    def isValid(self, s: str) -> bool:
+        my_stack = []
+        for char in s:
+            if(char in'([{'):
+                my_stack.append(char)
+            else:
+                if not my_stack or \
+                (char == ')' and my_stack[-1] != '(') or \
+                (char == ']' and my_stack[-1] != '[') or \
+                (char == '}' and my_stack[-1] != '{'):
+                    return False
+                my_stack.pop()
+
+        return not my_stack
