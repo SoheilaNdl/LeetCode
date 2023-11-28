@@ -1,0 +1,28 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = defaultdict(int)
+        freq = [[] for i in range(len(nums) + 1)]
+        final_res = []
+        for i in nums:
+            count[i] += 1
+        #First Solution
+        # result = dict(sorted(count.items(), key=lambda item: item[1], reverse=True))
+        # return (list(result.keys())[:k])  
+        # Second Solution 
+        # for i in range(k):
+        #     v = list(count.values())
+        #     k = list(count.keys())
+        #     new_max = k[v.index(max(v))]
+        #     final_res.append(new_max)
+        #     del count[new_max]
+        # return final_res
+
+        #Third Solution
+        for n, c in count.items():
+            freq[c].append(n)
+        
+        for i in range(len(freq) - 1, 0, -1):
+            for n in freq[i]:
+                final_res.append(n)
+                if len(final_res) == k:
+                    return final_res
